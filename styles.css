@@ -17,10 +17,7 @@ body {
   margin: 0;
   font-family: "Manrope", sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 10% 5%, #d6effb 0%, transparent 42%),
-    radial-gradient(circle at 90% 15%, #c2e7fb 0%, transparent 36%),
-    linear-gradient(160deg, var(--bg) 0%, var(--bg-strong) 100%);
+  background: #ffffff;
   line-height: 1.55;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -36,8 +33,7 @@ body {
   position: sticky;
   top: 0;
   backdrop-filter: blur(8px);
-  background: rgba(245, 251, 255, 0.8);
-  border-bottom: 1px solid var(--line);
+  background: #ffffff;
   z-index: 10;
 }
 
@@ -70,6 +66,7 @@ body {
 
 .main-nav a {
   text-decoration: none;
+  font-family: "Manrope", sans-serif;
   color: var(--ink-soft);
   font-weight: 600;
 }
@@ -92,9 +89,11 @@ body {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 1.4rem;
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: start;
+  justify-items: center;
+  text-align: center;
 }
 
 .eyebrow {
@@ -116,54 +115,29 @@ h3 {
 h1 {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  font-size: clamp(2.2rem, 4.8vw, 4rem);
-  max-width: 11ch;
+  font-size: clamp(1.5rem, 2.8vw, 2.35rem);
+  max-width: 12ch;
+  min-height: 3.2em;
 }
 
-.hero-booking {
-  background: #fff;
-  border: 1px solid #dbe5f2;
-  border-radius: 14px;
-  padding: 1rem;
-  box-shadow: 0 10px 24px rgba(16, 35, 71, 0.08);
+.typing-cursor {
+  display: inline-block;
+  margin-left: 0.08em;
+  animation: blink 1s step-end infinite;
 }
 
-.hero-booking h2 {
-  margin: 0 0 0.7rem;
-  font-family: "Manrope", sans-serif;
-  font-size: 1.1rem;
-  font-weight: 800;
+.typing-primary {
+  color: #003f66;
 }
 
-.hero-booking-form {
-  display: grid;
-  gap: 0.42rem;
+.typing-alert {
+  color: #d83434;
 }
 
-.hero-booking-form label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #30405f;
-}
-
-.hero-booking-form input,
-.hero-booking-form select {
-  border: 1px solid #d6dce6;
-  border-radius: 9px;
-  padding: 0.55rem 0.65rem;
-  font-size: 0.86rem;
-  margin-bottom: 0.35rem;
-}
-
-.hero-booking-form button {
-  border: none;
-  background: linear-gradient(130deg, #00a9e9, #00618e);
-  color: #fff;
-  border-radius: 10px;
-  padding: 0.62rem 0.85rem;
-  font-weight: 800;
-  cursor: pointer;
-  margin-top: 0.2rem;
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .lead {

@@ -81,3 +81,53 @@ const params = new URLSearchParams(window.location.search);
 if (params.get("payment") === "success" && paymentSuccess) {
   paymentSuccess.hidden = false;
 }
+
+const typingElement = document.getElementById("typingText");
+
+if (typingElement) {
+  const typingPhrases = [
+    { text: "We've got your full covered insurance. 🛡️", tone: "primary" },
+    { text: "We've got your visa covered. 🛂", tone: "primary" },
+    { text: "Luxury transfers waiting for you.. 🚘", tone: "primary" },
+    { text: "5-Star accommodations guaranteed. 🏨", tone: "primary" },
+    { text: "GPS safety bands for kids. 📍", tone: "primary" },
+    { text: "Experienced local guides with you. 🧭", tone: "primary" },
+    { text: "Want something unique?", tone: "alert" },
+    { text: "Customize your own travel package 🎯", tone: "primary" },
+    { text: "& More ...", tone: "primary" },
+    { text: "BOOK NOW", tone: "primary" }
+  ];
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeLoop() {
+    const current = typingPhrases[phraseIndex];
+
+    if (isDeleting) {
+      charIndex -= 1;
+    } else {
+      charIndex += 1;
+    }
+
+    const visible = current.text.slice(0, charIndex);
+    const toneClass = current.tone === "alert" ? "typing-alert" : "typing-primary";
+    typingElement.innerHTML = `<span class="${toneClass}">${visible}</span>`;
+
+    let delay = isDeleting ? 35 : 55;
+
+    if (!isDeleting && charIndex === current.text.length) {
+      delay = current.text === "BOOK NOW" ? 3000 : 900;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % typingPhrases.length;
+      delay = 260;
+    }
+
+    setTimeout(typeLoop, delay);
+  }
+
+  typeLoop();
+}
