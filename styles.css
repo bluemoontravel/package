@@ -180,6 +180,35 @@ h1 {
   margin-bottom: 1.2rem;
 }
 
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.category-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(20, 23, 31, 0.08);
+}
+
+.category-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.category-card h3 {
+  margin: 0;
+  padding: 0.8rem 0.9rem 0.9rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
 .tour-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -512,6 +541,7 @@ h1 {
   }
 
   .tour-cards,
+  .category-grid,
   .feature-grid {
     grid-template-columns: 1fr;
   }
