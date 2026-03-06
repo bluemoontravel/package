@@ -88,6 +88,11 @@ body {
   background: #fff;
 }
 
+select,
+option {
+  font-family: "Manrope", sans-serif;
+}
+
 .menu-btn {
   display: none;
   border: 1px solid var(--line);
