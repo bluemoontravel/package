@@ -204,6 +204,296 @@ h1 {
   margin-bottom: 1.2rem;
 }
 
+.booking-strip-section {
+  padding-top: 0.6rem;
+}
+
+.promo-banner {
+  position: relative;
+  background: linear-gradient(135deg, #006a95 0%, #0098d8 55%, #00b7ff 100%);
+  border-radius: 18px;
+  padding: 1rem 1rem 1.9rem;
+  width: min(1000px, 100%);
+  margin: 0 auto 0.85rem;
+  overflow: visible;
+  transition: padding-bottom 0.2s ease;
+}
+
+.promo-banner.open {
+  padding-bottom: 15.5rem;
+}
+
+.promo-banner.open-destination {
+  padding-bottom: 18.8rem;
+}
+
+.promo-banner::before {
+  content: "🏯   🛕   🐘   🎭   🛺   🏮";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 2rem;
+  letter-spacing: 1.4rem;
+  opacity: 0.11;
+  pointer-events: none;
+}
+
+.promo-banner::after {
+  content: "🛕   🌴   🐘   🛶   🏯";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.25rem;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.45rem;
+  opacity: 0.09;
+  pointer-events: none;
+}
+
+.booking-strip {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  border: 1px solid rgba(229, 238, 247, 0.8);
+  padding: 0.9rem;
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) minmax(170px, 1.15fr) minmax(230px, 1.5fr) auto;
+  gap: 0.6rem;
+}
+
+.booking-strip-item {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.booking-strip-item label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #53627c;
+}
+
+.booking-strip-item input,
+.booking-strip-item select {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  border: 1px solid #d0d9e7;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
+  color: #24324c;
+}
+
+.destination-item {
+  position: relative;
+}
+
+.destination-btn {
+  height: 48px;
+  border: 1px solid #d0d9e7;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  width: 100%;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
+  color: #6d7c95;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.destination-arrow {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.destination-item .destination-btn[aria-expanded="true"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.destination-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: min(360px, 96vw);
+  background: #fff;
+  border: 1px solid #d8e0ee;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 14px 30px rgba(16, 35, 71, 0.14);
+  padding: 0.8rem;
+  z-index: 25;
+}
+
+.destination-title {
+  margin: 0 0 0.55rem;
+  color: #2f3f5f;
+  font-size: 0.87rem;
+  font-weight: 700;
+}
+
+.destination-list {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.destination-option {
+  border: 1px solid #dbe3f0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  text-align: left;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #1f2f4b;
+  cursor: pointer;
+}
+
+.guests-item {
+  position: relative;
+}
+
+.guests-btn {
+  height: 48px;
+  border: 1px solid #d0d9e7;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  width: 100%;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
+  color: #24324c;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.guests-arrow {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.guests-item .guests-btn[aria-expanded="true"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.guests-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  min-width: 320px;
+  max-width: min(92vw, 420px);
+  background: #fff;
+  border: 1px solid #d8e0ee;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 14px 30px rgba(16, 35, 71, 0.14);
+  padding: 0.8rem;
+  z-index: 25;
+}
+
+.guests-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.42rem 0;
+}
+
+.guests-row p {
+  margin: 0;
+  font-size: 1.03rem;
+  color: #1f2a41;
+}
+
+.guests-row small {
+  color: #6d7c95;
+  font-size: 0.84rem;
+  margin-left: 0.2rem;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.counter-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 2px solid #2d5bff;
+  background: #fff;
+  color: #2d5bff;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.counter-btn.minus {
+  border-color: #b7c2d6;
+  color: #b7c2d6;
+}
+
+.counter span {
+  min-width: 18px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #1f2a41;
+}
+
+.guests-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.65rem;
+}
+
+.guests-actions button {
+  border: none;
+  background: #2d5bff;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.55rem 0.95rem;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.booking-strip-action {
+  align-self: end;
+}
+
+.booking-strip-action button {
+  height: 48px;
+  min-width: 130px;
+  border: 2px solid #2d5bff;
+  border-radius: 8px;
+  background: #fff;
+  color: #2d5bff;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .category-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -556,6 +846,22 @@ h1 {
   .category-grid,
   .feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .booking-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-strip-action button {
+    width: 100%;
+  }
+
+  .promo-banner {
+    text-align: center;
+  }
+
+  .destination-dropdown {
+    width: min(92vw, 360px);
   }
 
   .dashboard-grid {

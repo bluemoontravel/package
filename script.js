@@ -27,6 +27,17 @@ const selectedPackageName = document.getElementById("selectedPackageName");
 const paymentSuccess = document.getElementById("paymentSuccess");
 const bookingDialog = document.querySelector(".booking-dialog");
 const typingElement = document.getElementById("typingText");
+const roomsGuestsBtn = document.getElementById("roomsGuestsBtn");
+const guestsDropdown = document.getElementById("guestsDropdown");
+const guestsDone = document.getElementById("guestsDone");
+const roomsCountEl = document.getElementById("roomsCount");
+const adultsCountEl = document.getElementById("adultsCount");
+const childrenCountEl = document.getElementById("childrenCount");
+const roomsGuestsSummary = document.getElementById("roomsGuestsSummary");
+const stripDestinationBtn = document.getElementById("stripDestinationBtn");
+const stripDestinationLabel = document.getElementById("stripDestinationLabel");
+const stripDestinationInput = document.getElementById("stripDestination");
+const destinationDropdown = document.getElementById("destinationDropdown");
 
 const i18n = {
   en: {
@@ -374,3 +385,96 @@ if (languageSelect) {
   });
 }
 applyLanguage(savedLang);
+
+if (roomsGuestsBtn && guestsDropdown && guestsDone && roomsCountEl && adultsCountEl && childrenCountEl && roomsGuestsSummary) {
+  const promoBanner = document.querySelector(".promo-banner");
+  const limits = {
+    rooms: { min: 1, max: 8 },
+    adults: { min: 1, max: 16 },
+    children: { min: 0, max: 12 }
+  };
+
+  function syncBannerOpenState() {
+    const guestsOpen = !guestsDropdown.hidden;
+    const destinationOpen = destinationDropdown ? !destinationDropdown.hidden : false;
+    promoBanner?.classList.toggle("open", guestsOpen || destinationOpen);
+    promoBanner?.classList.toggle("open-destination", destinationOpen);
+  }
+
+  function getCounts() {
+    return {
+      rooms: Number(roomsCountEl.textContent) || 1,
+      adults: Number(adultsCountEl.textContent) || 1,
+      children: Number(childrenCountEl.textContent) || 0
+    };
+  }
+
+  function setCount(target, value) {
+    if (target === "rooms") roomsCountEl.textContent = String(value);
+    if (target === "adults") adultsCountEl.textContent = String(value);
+    if (target === "children") childrenCountEl.textContent = String(value);
+  }
+
+  function updateSummary() {
+    const c = getCounts();
+    roomsGuestsSummary.textContent = `${c.rooms} room${c.rooms > 1 ? "s" : ""}, ${c.adults} adult${c.adults > 1 ? "s" : ""}, ${c.children} child${c.children !== 1 ? "ren" : ""}`;
+  }
+
+  function toggleGuests(open) {
+    guestsDropdown.hidden = !open;
+    roomsGuestsBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    syncBannerOpenState();
+  }
+
+  function toggleDestinations(open) {
+    if (!destinationDropdown || !stripDestinationBtn) return;
+    destinationDropdown.hidden = !open;
+    stripDestinationBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    syncBannerOpenState();
+  }
+
+  roomsGuestsBtn.addEventListener("click", () => {
+    toggleGuests(guestsDropdown.hidden);
+  });
+
+  stripDestinationBtn?.addEventListener("click", () => {
+    toggleDestinations(destinationDropdown?.hidden);
+  });
+
+  guestsDone.addEventListener("click", () => {
+    toggleGuests(false);
+  });
+
+  guestsDropdown.querySelectorAll(".counter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-target");
+      if (!target || !limits[target]) return;
+      const counts = getCounts();
+      const delta = btn.classList.contains("minus") ? -1 : 1;
+      const next = Math.max(limits[target].min, Math.min(limits[target].max, counts[target] + delta));
+      setCount(target, next);
+      updateSummary();
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const withinGuests = guestsDropdown.contains(event.target) || roomsGuestsBtn.contains(event.target);
+    const withinDestination = destinationDropdown
+      ? destinationDropdown.contains(event.target) || stripDestinationBtn?.contains(event.target)
+      : false;
+
+    if (!withinGuests) toggleGuests(false);
+    if (!withinDestination) toggleDestinations(false);
+  });
+
+  destinationDropdown?.querySelectorAll(".destination-option").forEach((option) => {
+    option.addEventListener("click", () => {
+      const place = option.getAttribute("data-place") || "";
+      if (stripDestinationLabel) stripDestinationLabel.textContent = place;
+      if (stripDestinationInput) stripDestinationInput.value = place;
+      toggleDestinations(false);
+    });
+  });
+
+  updateSummary();
+}
