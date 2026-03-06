@@ -28,7 +28,7 @@ const selectedPackageName = document.getElementById("selectedPackageName");
 const paymentSuccess = document.getElementById("paymentSuccess");
 
 const PENDING_BOOKING_KEY = "bluemoon_pending_booking";
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_dRmdRb3G1g363mucSRgjC00";
+const bookingDialog = document.querySelector(".booking-dialog");
 
 bookButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
@@ -37,6 +37,12 @@ bookButtons.forEach((button) => {
     const packageTitle = card?.querySelector("h3")?.textContent?.trim() || "Selected Package";
     if (selectedPackageName) selectedPackageName.textContent = packageTitle;
     if (bookingModal) bookingModal.dataset.packageName = packageTitle;
+    if (bookingForm) {
+      bookingForm.reset();
+      bookingForm.style.display = "grid";
+    }
+    const thanks = document.getElementById("bookingThanksMessage");
+    if (thanks) thanks.hidden = true;
     bookingModal?.classList.add("open");
     bookingModal?.setAttribute("aria-hidden", "false");
   });
@@ -56,35 +62,19 @@ bookingModal?.addEventListener("click", (event) => {
 
 bookingForm?.addEventListener("submit", (event) => {
   event.preventDefault();
-  const packageName = bookingModal?.dataset.packageName || "Selected Package";
-  const guestName = document.getElementById("guestName")?.value?.trim() || "";
-  const email = document.getElementById("guestEmail")?.value?.trim() || "guest@example.com";
-  const persons = document.getElementById("guestPersons")?.value?.trim() || "1";
-  const travelDate = document.getElementById("travelDate")?.value?.trim() || "";
+  bookingForm.style.display = "none";
 
-  const card = [...document.querySelectorAll(".tour-card h3")]
-    .find((h3) => h3.textContent?.trim() === packageName)
-    ?.closest(".tour-card");
-  const amount = card?.querySelector(".tour-price strong")?.textContent?.trim() || "THB 0";
-
-  const pendingBooking = {
-    id: `BK-${Date.now()}`,
-    packageName,
-    amount,
-    guestName,
-    email,
-    persons,
-    travelDate,
-    createdAt: new Date().toISOString(),
-    status: "PENDING_PAYMENT"
-  };
-
-  localStorage.setItem(PENDING_BOOKING_KEY, JSON.stringify(pendingBooking));
-
-  const params = new URLSearchParams({
-    prefilled_email: email
-  });
-  window.location.href = `${STRIPE_PAYMENT_LINK}?${params.toString()}`;
+  let thanks = document.getElementById("bookingThanksMessage");
+  if (!thanks) {
+    thanks = document.createElement("p");
+    thanks.id = "bookingThanksMessage";
+    thanks.textContent = "Thank you. Your booking request has been received.";
+    thanks.style.margin = "0.9rem 0 0";
+    thanks.style.color = "#0f6a39";
+    thanks.style.fontWeight = "700";
+    bookingDialog?.appendChild(thanks);
+  }
+  thanks.hidden = false;
 });
 
 const params = new URLSearchParams(window.location.search);
