@@ -421,6 +421,69 @@ h1 {
   font-weight: 700;
 }
 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.metric-card {
+  background: #fff;
+  border: 1px solid #e3e8f2;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.metric-card p {
+  margin: 0;
+  color: #6a7489;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.metric-card h2 {
+  margin: 0.3rem 0 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.table-wrap {
+  background: #fff;
+  border: 1px solid #e3e8f2;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 880px;
+}
+
+.booking-table th,
+.booking-table td {
+  text-align: left;
+  padding: 0.65rem 0.55rem;
+  border-bottom: 1px solid #edf1f7;
+  font-size: 0.87rem;
+}
+
+.booking-table th {
+  color: #42547a;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.booking-table td {
+  color: #2c3a57;
+}
+
 @media (max-width: 860px) {
   .menu-btn {
     display: inline-block;
@@ -450,6 +513,10 @@ h1 {
 
   .tour-cards,
   .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid {
     grid-template-columns: 1fr;
   }
 

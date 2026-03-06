@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueMoon Owner Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">BlueMoon Thailand</a>
+      <nav class="main-nav">
+        <a href="index.html">Landing Page</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Owner Dashboard</h1>
+      <div class="dashboard-grid">
+        <article class="metric-card">
+          <p>Total Bookings</p>
+          <h2 id="totalBookings">0</h2>
+        </article>
+        <article class="metric-card">
+          <p>Total Revenue</p>
+          <h2 id="totalRevenue">THB 0</h2>
+        </article>
+        <article class="metric-card">
+          <p>Last Booking</p>
+          <h2 id="lastBooking">-</h2>
+        </article>
+      </div>
+
+      <section class="table-wrap">
+        <h2 class="section-title">Recent Bookings</h2>
+        <div class="table-scroll">
+          <table class="booking-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Package</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Persons</th>
+                <th>Travel Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Paid At</th>
+              </tr>
+            </thead>
+            <tbody id="bookingRows">
+              <tr>
+                <td colspan="9">No bookings yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

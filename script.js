@@ -27,16 +27,17 @@ const bookingForm = document.getElementById("bookingForm");
 const selectedPackageName = document.getElementById("selectedPackageName");
 const paymentSuccess = document.getElementById("paymentSuccess");
 
+const PENDING_BOOKING_KEY = "bluemoon_pending_booking";
+const BOOKINGS_KEY = "bluemoon_bookings";
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_dRmdRb3G1g363mucSRgjC00";
+
 bookButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
     const card = button.closest(".tour-card");
     const packageTitle = card?.querySelector("h3")?.textContent?.trim() || "Selected Package";
     if (selectedPackageName) selectedPackageName.textContent = packageTitle;
-    if (bookingModal) {
-      bookingModal.dataset.packageName = packageTitle;
-      bookingModal.dataset.stripeLink = button.getAttribute("data-stripe-link") || "";
-    }
+    if (bookingModal) bookingModal.dataset.packageName = packageTitle;
     bookingModal?.classList.add("open");
     bookingModal?.setAttribute("aria-hidden", "false");
   });
@@ -57,21 +58,54 @@ bookingModal?.addEventListener("click", (event) => {
 bookingForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const packageName = bookingModal?.dataset.packageName || "Selected Package";
-  const email = document.getElementById("guestEmail")?.value?.trim() || "";
-  const card = [...document.querySelectorAll(".tour-card h3")].find((h3) => h3.textContent?.trim() === packageName)?.closest(".tour-card");
-  const amount = card?.querySelector(".tour-price strong")?.textContent?.trim() || "฿0";
+  const guestName = document.getElementById("guestName")?.value?.trim() || "";
+  const email = document.getElementById("guestEmail")?.value?.trim() || "guest@example.com";
+  const persons = document.getElementById("guestPersons")?.value?.trim() || "1";
+  const travelDate = document.getElementById("travelDate")?.value?.trim() || "";
 
-  localStorage.setItem("lastBookedPackage", packageName);
-  if (email) localStorage.setItem("lastBookedEmail", email);
-  const params = new URLSearchParams({
-    pkg: packageName,
+  const card = [...document.querySelectorAll(".tour-card h3")]
+    .find((h3) => h3.textContent?.trim() === packageName)
+    ?.closest(".tour-card");
+  const amount = card?.querySelector(".tour-price strong")?.textContent?.trim() || "THB 0";
+
+  const pendingBooking = {
+    id: `BK-${Date.now()}`,
+    packageName,
     amount,
-    email: email || "guest@example.com"
+    guestName,
+    email,
+    persons,
+    travelDate,
+    createdAt: new Date().toISOString(),
+    status: "PENDING_PAYMENT"
+  };
+
+  localStorage.setItem(PENDING_BOOKING_KEY, JSON.stringify(pendingBooking));
+
+  const params = new URLSearchParams({
+    prefilled_email: email
   });
-  window.location.href = `dummy-stripe.html?${params.toString()}`;
+  window.location.href = `${STRIPE_PAYMENT_LINK}?${params.toString()}`;
 });
 
 const params = new URLSearchParams(window.location.search);
 if (params.get("payment") === "success" && paymentSuccess) {
+  const pendingRaw = localStorage.getItem(PENDING_BOOKING_KEY);
+  if (pendingRaw) {
+    try {
+      const pending = JSON.parse(pendingRaw);
+      const bookingsRaw = localStorage.getItem(BOOKINGS_KEY);
+      const bookings = bookingsRaw ? JSON.parse(bookingsRaw) : [];
+      bookings.push({
+        ...pending,
+        status: "PAID",
+        paidAt: new Date().toISOString()
+      });
+      localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings));
+      localStorage.removeItem(PENDING_BOOKING_KEY);
+    } catch (error) {
+      // Ignore malformed local storage values.
+    }
+  }
   paymentSuccess.hidden = false;
 }
