@@ -25,6 +25,7 @@ const bookingModal = document.getElementById("bookingModal");
 const modalClose = document.querySelector(".modal-close");
 const bookingForm = document.getElementById("bookingForm");
 const selectedPackageName = document.getElementById("selectedPackageName");
+const paymentSuccess = document.getElementById("paymentSuccess");
 
 bookButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
@@ -32,6 +33,10 @@ bookButtons.forEach((button) => {
     const card = button.closest(".tour-card");
     const packageTitle = card?.querySelector("h3")?.textContent?.trim() || "Selected Package";
     if (selectedPackageName) selectedPackageName.textContent = packageTitle;
+    if (bookingModal) {
+      bookingModal.dataset.packageName = packageTitle;
+      bookingModal.dataset.stripeLink = button.getAttribute("data-stripe-link") || "";
+    }
     bookingModal?.classList.add("open");
     bookingModal?.setAttribute("aria-hidden", "false");
   });
@@ -51,8 +56,21 @@ bookingModal?.addEventListener("click", (event) => {
 
 bookingForm?.addEventListener("submit", (event) => {
   event.preventDefault();
-  alert("Thank you! Your booking request has been submitted.");
-  bookingModal?.classList.remove("open");
-  bookingModal?.setAttribute("aria-hidden", "true");
-  bookingForm.reset();
+  const stripeLink = bookingModal?.dataset.stripeLink || "";
+  const packageName = bookingModal?.dataset.packageName || "Selected Package";
+  const email = document.getElementById("guestEmail")?.value?.trim() || "";
+
+  if (!stripeLink || stripeLink.includes("YOUR_STRIPE_PAYMENT_LINK_HERE")) {
+    alert("Please add your real Stripe payment link in the Book Now button data-stripe-link.");
+    return;
+  }
+
+  localStorage.setItem("lastBookedPackage", packageName);
+  if (email) localStorage.setItem("lastBookedEmail", email);
+  window.location.href = stripeLink;
 });
+
+const params = new URLSearchParams(window.location.search);
+if (params.get("payment") === "success" && paymentSuccess) {
+  paymentSuccess.hidden = false;
+}
