@@ -1,10 +1,10 @@
 :root {
-  --bg: #f5fbff;
-  --bg-strong: #ffe3f1;
-  --ink: #112347;
-  --ink-soft: #35507d;
-  --accent: #ff5a8a;
-  --accent-deep: #ff7a00;
+  --bg: #f1f8fc;
+  --bg-strong: #d8ecf8;
+  --ink: #003f66;
+  --ink-soft: #2f3a48;
+  --accent: #00a9e9;
+  --accent-deep: #00618e;
   --card: #ffffff;
   --line: rgba(17, 35, 71, 0.14);
 }
@@ -18,8 +18,8 @@ body {
   font-family: "Manrope", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 10% 5%, #d5f1ff 0%, transparent 42%),
-    radial-gradient(circle at 90% 15%, #ffe0a8 0%, transparent 36%),
+    radial-gradient(circle at 10% 5%, #d6effb 0%, transparent 42%),
+    radial-gradient(circle at 90% 15%, #c2e7fb 0%, transparent 36%),
     linear-gradient(160deg, var(--bg) 0%, var(--bg-strong) 100%);
   line-height: 1.55;
   font-size: 16px;
@@ -50,9 +50,17 @@ body {
 
 .brand {
   text-decoration: none;
-  color: var(--ink);
+  color: #00a9e9;
   font-weight: 800;
   letter-spacing: 0.2px;
+  line-height: 1.1;
+}
+
+.brand span {
+  display: block;
+  color: #2a2f38;
+  font-size: 0.72rem;
+  letter-spacing: 0.8px;
 }
 
 .main-nav {
@@ -114,7 +122,7 @@ body {
 
 .eyebrow {
   font-weight: 700;
-  color: #ff5c3b;
+  color: #00a9e9;
   text-transform: uppercase;
   font-size: 0.78rem;
   letter-spacing: 1.4px;
@@ -143,11 +151,11 @@ h1 {
   display: inline-block;
   text-decoration: none;
   color: #fff;
-  background: linear-gradient(130deg, #ff5a8a, #ff8a00);
+  background: linear-gradient(130deg, #00a9e9, #00618e);
   padding: 0.8rem 1.25rem;
   border-radius: 999px;
   font-weight: 700;
-  box-shadow: 0 12px 26px rgba(255, 90, 138, 0.28);
+  box-shadow: 0 12px 26px rgba(0, 97, 142, 0.28);
 }
 
 .hero-card {
@@ -240,7 +248,7 @@ h1 {
   letter-spacing: 1.1px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #5b46ff;
+  color: #00a9e9;
 }
 
 .tour-card h3 {
@@ -261,7 +269,7 @@ h1 {
 }
 
 .tour-price strong {
-  color: #5b46ff;
+  color: #006ea0;
   font-size: 1.15em;
   font-weight: 800;
 }
@@ -308,7 +316,7 @@ h1 {
 
 .book-btn {
   text-decoration: none;
-  background: linear-gradient(130deg, #ff5a8a, #ff8a00);
+  background: linear-gradient(130deg, #00a9e9, #00618e);
   color: #fff;
   font-size: 0.78rem;
   font-weight: 800;
@@ -374,7 +382,7 @@ h1 {
 
 .submit-booking {
   border: none;
-  background: linear-gradient(130deg, #ff5a8a, #ff8a00);
+  background: linear-gradient(130deg, #00a9e9, #00618e);
   color: #fff;
   border-radius: 10px;
   padding: 0.75rem 1rem;
