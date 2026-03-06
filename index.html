@@ -59,7 +59,7 @@
               </button>
               <div class="tour-footer">
                 <p class="tour-meta">3 Days / 2 Nights</p>
-                <a class="book-btn" href="#" data-stripe-link="https://buy.stripe.com/test_6oU6oIfPj3hLeJ26oo">Book Now</a>
+                <a class="book-btn" href="#">Book Now</a>
               </div>
               <div class="tour-details">
                 <p>Day 1: City temple tour and street food walk.</p>
@@ -80,7 +80,7 @@
               </button>
               <div class="tour-footer">
                 <p class="tour-meta">4 Days / 3 Nights</p>
-                <a class="book-btn" href="#" data-stripe-link="https://buy.stripe.com/test_14A4gA7mN4lP0Wc288">Book Now</a>
+                <a class="book-btn" href="#">Book Now</a>
               </div>
               <div class="tour-details">
                 <p>Day 1: Old city temples and night bazaar.</p>
@@ -101,7 +101,7 @@
               </button>
               <div class="tour-footer">
                 <p class="tour-meta">5 Days / 4 Nights</p>
-                <a class="book-btn" href="#" data-stripe-link="https://buy.stripe.com/test_7sIcN69uV1dD2ck4gh">Book Now</a>
+                <a class="book-btn" href="#">Book Now</a>
               </div>
               <div class="tour-details">
                 <p>Day 1-2: Phuket beach stay and sunset cruise.</p>
@@ -122,7 +122,7 @@
               </button>
               <div class="tour-footer">
                 <p class="tour-meta">3 Days / 2 Nights</p>
-                <a class="book-btn" href="#" data-stripe-link="https://buy.stripe.com/test_bIY4gA0Yh3hL5owfYZ">Book Now</a>
+                <a class="book-btn" href="#">Book Now</a>
               </div>
               <div class="tour-details">
                 <p>Day 1: Beach check-in and evening market.</p>
@@ -143,7 +143,7 @@
               </button>
               <div class="tour-footer">
                 <p class="tour-meta">4 Days / 3 Nights</p>
-                <a class="book-btn" href="#" data-stripe-link="https://buy.stripe.com/test_dR67sM3itf0h7wA5kl">Book Now</a>
+                <a class="book-btn" href="#">Book Now</a>
               </div>
               <div class="tour-details">
                 <p>Day 1: Lake rafting and cave temple visit.</p>
@@ -164,7 +164,7 @@
               </button>
               <div class="tour-footer">
                 <p class="tour-meta">2 Days / 1 Night</p>
-                <a class="book-btn" href="#" data-stripe-link="https://buy.stripe.com/test_9AQ9AU8qR0ZzdFYdQR">Book Now</a>
+                <a class="book-btn" href="#">Book Now</a>
               </div>
               <div class="tour-details">
                 <p>Day 1: Temple ruins and river sunset cruise.</p>
@@ -203,6 +203,29 @@
       <p>© 2026 BlueMoon Travel Thailand. All rights reserved.</p>
     </div>
   </footer>
+
+  <div class="booking-modal" id="bookingModal" aria-hidden="true">
+    <div class="booking-dialog">
+      <button class="modal-close" type="button" aria-label="Close booking form">×</button>
+      <h3>Book Your Package</h3>
+      <p class="selected-package">Package: <strong id="selectedPackageName">-</strong></p>
+      <form id="bookingForm">
+        <label for="guestName">Name</label>
+        <input id="guestName" name="name" type="text" required>
+
+        <label for="guestEmail">Email</label>
+        <input id="guestEmail" name="email" type="email" required>
+
+        <label for="guestPersons">Number of Persons</label>
+        <input id="guestPersons" name="persons" type="number" min="1" required>
+
+        <label for="travelDate">Date</label>
+        <input id="travelDate" name="date" type="date" required>
+
+        <button type="submit" class="submit-booking">Submit</button>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

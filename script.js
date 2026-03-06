@@ -21,12 +21,38 @@ detailToggles.forEach((toggle) => {
 });
 
 const bookButtons = document.querySelectorAll(".book-btn");
+const bookingModal = document.getElementById("bookingModal");
+const modalClose = document.querySelector(".modal-close");
+const bookingForm = document.getElementById("bookingForm");
+const selectedPackageName = document.getElementById("selectedPackageName");
 
 bookButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
-    const link = button.getAttribute("data-stripe-link");
-    if (!link) return;
     event.preventDefault();
-    window.location.href = link;
+    const card = button.closest(".tour-card");
+    const packageTitle = card?.querySelector("h3")?.textContent?.trim() || "Selected Package";
+    if (selectedPackageName) selectedPackageName.textContent = packageTitle;
+    bookingModal?.classList.add("open");
+    bookingModal?.setAttribute("aria-hidden", "false");
   });
+});
+
+modalClose?.addEventListener("click", () => {
+  bookingModal?.classList.remove("open");
+  bookingModal?.setAttribute("aria-hidden", "true");
+});
+
+bookingModal?.addEventListener("click", (event) => {
+  if (event.target === bookingModal) {
+    bookingModal.classList.remove("open");
+    bookingModal.setAttribute("aria-hidden", "true");
+  }
+});
+
+bookingForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  alert("Thank you! Your booking request has been submitted.");
+  bookingModal?.classList.remove("open");
+  bookingModal?.setAttribute("aria-hidden", "true");
+  bookingForm.reset();
 });
