@@ -326,7 +326,7 @@ h1 {
   position: absolute;
   top: 100%;
   left: 0;
-  width: min(360px, 96vw);
+  width: 100%;
   background: #fff;
   border: 1px solid #d8e0ee;
   border-top: none;
@@ -397,8 +397,6 @@ h1 {
   top: 100%;
   left: 0;
   width: 100%;
-  min-width: 320px;
-  max-width: min(92vw, 420px);
   background: #fff;
   border: 1px solid #d8e0ee;
   border-top: none;
@@ -858,10 +856,6 @@ h1 {
 
   .promo-banner {
     text-align: center;
-  }
-
-  .destination-dropdown {
-    width: min(92vw, 360px);
   }
 
   .dashboard-grid {
