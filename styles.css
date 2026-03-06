@@ -85,39 +85,16 @@ body {
 }
 
 .hero {
-  position: relative;
-  padding: 5.5rem 0 4rem;
-  min-height: 78vh;
-  overflow: hidden;
-}
-
-.hero-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    100deg,
-    rgba(243, 250, 255, 0.86) 0%,
-    rgba(231, 250, 245, 0.72) 38%,
-    rgba(255, 206, 143, 0.42) 100%
-  );
+  background: #ffffff;
+  padding: 4rem 0 3.2rem;
+  min-height: 58vh;
 }
 
 .hero-grid {
-  position: relative;
-  z-index: 1;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 2rem;
-  align-items: center;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1.4rem;
+  align-items: start;
 }
 
 .eyebrow {
@@ -137,8 +114,56 @@ h3 {
 }
 
 h1 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
   font-size: clamp(2.2rem, 4.8vw, 4rem);
-  max-width: 14ch;
+  max-width: 11ch;
+}
+
+.hero-booking {
+  background: #fff;
+  border: 1px solid #dbe5f2;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 10px 24px rgba(16, 35, 71, 0.08);
+}
+
+.hero-booking h2 {
+  margin: 0 0 0.7rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.hero-booking-form {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.hero-booking-form label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #30405f;
+}
+
+.hero-booking-form input,
+.hero-booking-form select {
+  border: 1px solid #d6dce6;
+  border-radius: 9px;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.86rem;
+  margin-bottom: 0.35rem;
+}
+
+.hero-booking-form button {
+  border: none;
+  background: linear-gradient(130deg, #00a9e9, #00618e);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.62rem 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 0.2rem;
 }
 
 .lead {

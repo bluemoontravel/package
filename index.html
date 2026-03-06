@@ -32,13 +32,45 @@
     </section>
 
     <section class="hero">
-      <img class="hero-image" src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=2000&q=80" alt="Longtail boat on a tropical beach in Thailand">
-      <div class="hero-overlay"></div>
       <div class="container hero-grid">
         <div>
           <p class="eyebrow">BLUE MOON SIGNATURE JOURNEYS</p>
           <h1>Explore Thailand With Blue Moon Travel Thailand.</h1>
         </div>
+        <aside class="hero-booking">
+          <h2>Quick Booking</h2>
+          <form class="hero-booking-form">
+            <label for="heroPackage">Package</label>
+            <select id="heroPackage" name="package" required>
+              <option value="">Select package</option>
+              <option>Bangkok City Explorer</option>
+              <option>Northern Culture Escape</option>
+              <option>Island Hopping Retreat</option>
+            </select>
+
+            <label for="heroPeople">Number of People</label>
+            <input id="heroPeople" name="people" type="number" min="1" required>
+
+            <label for="heroArrival">Date of Arrival</label>
+            <input id="heroArrival" name="arrival" type="date" required>
+
+            <label for="heroNationality">Nationality</label>
+            <input id="heroNationality" name="nationality" type="text" placeholder="e.g. Thai, Indian, British" required>
+
+            <label for="heroTripType">Trip Type</label>
+            <select id="heroTripType" name="tripType">
+              <option>Family</option>
+              <option>Honeymoon</option>
+              <option>Adventure</option>
+              <option>Luxury</option>
+            </select>
+
+            <label for="heroNotes">Special Request</label>
+            <input id="heroNotes" name="notes" type="text" placeholder="Airport pickup, hotel preference, etc.">
+
+            <button type="submit">Send Enquiry</button>
+          </form>
+        </aside>
       </div>
     </section>
 
