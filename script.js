@@ -19,3 +19,14 @@ detailToggles.forEach((toggle) => {
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
 });
+
+const bookButtons = document.querySelectorAll(".book-btn");
+
+bookButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const link = button.getAttribute("data-stripe-link");
+    if (!link) return;
+    event.preventDefault();
+    window.location.href = link;
+  });
+});
