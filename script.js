@@ -56,18 +56,19 @@ bookingModal?.addEventListener("click", (event) => {
 
 bookingForm?.addEventListener("submit", (event) => {
   event.preventDefault();
-  const stripeLink = bookingModal?.dataset.stripeLink || "";
   const packageName = bookingModal?.dataset.packageName || "Selected Package";
   const email = document.getElementById("guestEmail")?.value?.trim() || "";
-
-  if (!stripeLink || stripeLink.includes("YOUR_STRIPE_PAYMENT_LINK_HERE")) {
-    alert("Please add your real Stripe payment link in the Book Now button data-stripe-link.");
-    return;
-  }
+  const card = [...document.querySelectorAll(".tour-card h3")].find((h3) => h3.textContent?.trim() === packageName)?.closest(".tour-card");
+  const amount = card?.querySelector(".tour-price strong")?.textContent?.trim() || "฿0";
 
   localStorage.setItem("lastBookedPackage", packageName);
   if (email) localStorage.setItem("lastBookedEmail", email);
-  window.location.href = stripeLink;
+  const params = new URLSearchParams({
+    pkg: packageName,
+    amount,
+    email: email || "guest@example.com"
+  });
+  window.location.href = `dummy-stripe.html?${params.toString()}`;
 });
 
 const params = new URLSearchParams(window.location.search);

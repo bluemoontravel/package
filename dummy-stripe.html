@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dummy Stripe Checkout</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f9fc;
+      color: #1a1f36;
+    }
+    .wrap {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+    .card {
+      width: min(460px, 100%);
+      background: #fff;
+      border: 1px solid #e6ebf1;
+      border-radius: 14px;
+      padding: 1.2rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      margin: 0 0 0.4rem;
+      font-size: 1.25rem;
+    }
+    p {
+      margin: 0.35rem 0;
+      color: #4f5b76;
+    }
+    .amount {
+      margin-top: 0.75rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #2b44ff;
+    }
+    .btn {
+      margin-top: 1rem;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      background: #635bff;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Dummy Stripe Checkout</h1>
+      <p id="pkg">Package: -</p>
+      <p id="email">Email: -</p>
+      <p class="amount" id="amt">Amount: -</p>
+      <button class="btn" id="payBtn">Pay Now (Test)</button>
+    </div>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const pkg = params.get("pkg") || "Selected Package";
+    const amount = params.get("amount") || "0";
+    const email = params.get("email") || "guest@example.com";
+    document.getElementById("pkg").textContent = "Package: " + pkg;
+    document.getElementById("email").textContent = "Email: " + email;
+    document.getElementById("amt").textContent = "Amount: " + amount;
+
+    document.getElementById("payBtn").addEventListener("click", () => {
+      window.location.href = "index.html?payment=success";
+    });
+  </script>
+</body>
+</html>
