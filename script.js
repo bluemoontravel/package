@@ -28,7 +28,6 @@ const selectedPackageName = document.getElementById("selectedPackageName");
 const paymentSuccess = document.getElementById("paymentSuccess");
 
 const PENDING_BOOKING_KEY = "bluemoon_pending_booking";
-const BOOKINGS_KEY = "bluemoon_bookings";
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_dRmdRb3G1g363mucSRgjC00";
 
 bookButtons.forEach((button) => {
@@ -90,22 +89,5 @@ bookingForm?.addEventListener("submit", (event) => {
 
 const params = new URLSearchParams(window.location.search);
 if (params.get("payment") === "success" && paymentSuccess) {
-  const pendingRaw = localStorage.getItem(PENDING_BOOKING_KEY);
-  if (pendingRaw) {
-    try {
-      const pending = JSON.parse(pendingRaw);
-      const bookingsRaw = localStorage.getItem(BOOKINGS_KEY);
-      const bookings = bookingsRaw ? JSON.parse(bookingsRaw) : [];
-      bookings.push({
-        ...pending,
-        status: "PAID",
-        paidAt: new Date().toISOString()
-      });
-      localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings));
-      localStorage.removeItem(PENDING_BOOKING_KEY);
-    } catch (error) {
-      // Ignore malformed local storage values.
-    }
-  }
   paymentSuccess.hidden = false;
 }
