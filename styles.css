@@ -125,7 +125,7 @@ h1,
 h2,
 h3 {
   margin: 0 0 0.7rem;
-  font-family: "Playfair Display", serif;
+  font-family: "Manrope", sans-serif;
   line-height: 1.15;
 }
 
@@ -134,13 +134,19 @@ h1 {
   font-weight: 800;
   font-size: clamp(1.5rem, 2.8vw, 2.35rem);
   max-width: 12ch;
-  min-height: 3.2em;
+  line-height: 1.22;
+  min-height: 5em;
 }
 
 .typing-cursor {
   display: inline-block;
   margin-left: 0.08em;
   animation: blink 1s step-end infinite;
+}
+
+#typingText {
+  display: inline-block;
+  width: 100%;
 }
 
 .typing-primary {
@@ -655,7 +661,7 @@ h1 {
 }
 
 .booking-dialog h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Manrope", sans-serif;
   margin: 0 0 0.45rem;
 }
 
